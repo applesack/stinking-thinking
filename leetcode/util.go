@@ -40,3 +40,6 @@ func (t *ListNode) Display() {
 	}
 	fmt.Println(buff.String())
 }
+
+func Assert() {
+}
