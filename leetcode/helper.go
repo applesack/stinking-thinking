@@ -41,5 +41,18 @@ func (t *ListNode) Display() {
 	fmt.Println(buff.String())
 }
 
-func Assert() {
+func BuildSlice(nums ...int) []int {
+	slice := make([]int, len(nums))
+	for i, num := range nums {
+		slice[i] = num
+	}
+	return slice
+}
+
+func Build2DSlice(slices ...[]int) [][]int {
+	slice2d := make([][]int, len(slices))
+	for i, slice := range slices {
+		slice2d[i] = slice
+	}
+	return slice2d
 }
