@@ -2,7 +2,6 @@ package list
 
 import (
 	"container/list"
-	"fmt"
 	. "stinking-thinking/adt"
 )
 
@@ -38,14 +37,14 @@ func (t *LinkedList[T]) LPush(value T) {
 
 func (t *LinkedList[T]) Get(index int) (*T, error) {
 	list.New()
-	if err := t.checkIndex(index); err != nil {
+	if err := checkIndex(index, t.size); err != nil {
 		return nil, err
 	}
 	return &(t.locateIndex(index).Value), nil
 }
 
 func (t *LinkedList[T]) Remove(index int) (*T, error) {
-	if err := t.checkIndex(index); err != nil {
+	if err := checkIndex(index, t.size); err != nil {
 		return nil, err
 	}
 	ptr := t.locateIndex(index)
@@ -94,11 +93,4 @@ func (t *LinkedList[T]) locateIndex(index int) *DLinkedNode[T] {
 		}
 	}
 	return ptr
-}
-
-func (t *LinkedList[T]) checkIndex(index int) error {
-	if index < 0 || index >= t.size {
-		return fmt.Errorf("index out of bound [%d:%d]", t.size, index)
-	}
-	return nil
 }

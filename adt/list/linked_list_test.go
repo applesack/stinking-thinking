@@ -2,6 +2,7 @@ package list
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -61,6 +62,33 @@ func TestLinkedList_Struct(t *testing.T) {
 	list := CreateLinkedList[testStruct]()
 	has, s := list.LGet()
 	fmt.Println(has, s)
+}
+
+func BenchmarkLinkedList_Batch(b *testing.B) {
+	b.StartTimer()
+	defer b.StopTimer()
+	l := CreateLinkedList[int]()
+	for i := 0; i < 100000; i++ {
+		l.RPush(i)
+	}
+	for i := 0; i < 100000; i++ {
+		_, _ = l.Get(i)
+	}
+}
+
+func BenchmarkLinkedList_Batch1(b *testing.B) {
+	b.StartTimer()
+	defer b.StopTimer()
+	l := CreateLinkedList[testStruct]()
+	for i := 0; i < 100000; i++ {
+		l.RPush(testStruct{
+			name: strconv.Itoa(i),
+			age:  i,
+		})
+	}
+	for i := 0; i < 100000; i++ {
+		_, _ = l.Get(i)
+	}
 }
 
 type testStruct struct {
