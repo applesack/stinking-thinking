@@ -41,10 +41,10 @@ func (t *ListNode) Display() {
 	fmt.Println(buff.String())
 }
 
-func BuildSlice(nums ...int) []int {
-	slice := make([]int, len(nums))
-	for i, num := range nums {
-		slice[i] = num
+func BuildSlice[T any](members ...T) []T {
+	slice := make([]T, len(members))
+	for i, member := range members {
+		slice[i] = member
 	}
 	return slice
 }
