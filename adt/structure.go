@@ -13,8 +13,12 @@ type Entry[K any, V any] struct {
 	Value V
 }
 
-func CreateDLinkedNode[T any](value T) *DLinkedNode[T] {
+func NewDLinkedNode[T any](value T) *DLinkedNode[T] {
 	return &DLinkedNode[T]{Value: value}
+}
+
+func NewEntry[K any, V any](key K, value V) *Entry[K, V] {
+	return &Entry[K, V]{Key: key, Value: value}
 }
 
 func BindDLinkedNode[T any](prev, next *DLinkedNode[T]) {
@@ -30,10 +34,6 @@ func (t *DLinkedNode[T]) Delete() {
 
 func (t *DLinkedNode[T]) String() string {
 	return fmt.Sprintf("[v=%+v, p=%b, n=%b]", t.Value, t.Prev, t.Next)
-}
-
-func CreateEntry[K any, V any](key K, value V) *Entry[K, V] {
-	return &Entry[K, V]{Key: key, Value: value}
 }
 
 func (t *Entry[K, V]) String() string {

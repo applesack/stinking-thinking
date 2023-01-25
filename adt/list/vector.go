@@ -5,7 +5,7 @@ type Vector[T any] struct {
 	container []T
 }
 
-func CreateVector[T any](increment int) *Vector[T] {
+func NewVector[T any](increment int) *Vector[T] {
 	if increment <= 0 {
 		increment = 4
 	}

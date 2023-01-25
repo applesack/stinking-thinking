@@ -7,7 +7,7 @@ import (
 )
 
 func TestLinkedList_AddFirst(t *testing.T) {
-	list := CreateLinkedList[int]()
+	list := NewLinkedList[int]()
 	list.RPush(1)
 	list.RPush(2)
 	list.LPush(3)
@@ -16,7 +16,7 @@ func TestLinkedList_AddFirst(t *testing.T) {
 }
 
 func TestLinkedList_Get(t *testing.T) {
-	list := CreateLinkedList[int]()
+	list := NewLinkedList[int]()
 	for i := 0; i < 10; i++ {
 		list.RPush(i)
 	}
@@ -41,7 +41,7 @@ func TestLinkedList_Remove(t *testing.T) {
 		}
 	}
 
-	list := CreateLinkedList[int]()
+	list := NewLinkedList[int]()
 	for i := 0; i < 10; i++ {
 		list.RPush(i)
 	}
@@ -49,7 +49,7 @@ func TestLinkedList_Remove(t *testing.T) {
 }
 
 func TestLinkedList_RemoveBoth(t *testing.T) {
-	list := CreateLinkedList[int]()
+	list := NewLinkedList[int]()
 	for i := 0; i < 10; i++ {
 		list.RPush(i)
 	}
@@ -59,7 +59,7 @@ func TestLinkedList_RemoveBoth(t *testing.T) {
 }
 
 func TestLinkedList_Struct(t *testing.T) {
-	list := CreateLinkedList[testStruct]()
+	list := NewLinkedList[testStruct]()
 	has, s := list.LGet()
 	fmt.Println(has, s)
 }
@@ -67,7 +67,7 @@ func TestLinkedList_Struct(t *testing.T) {
 func BenchmarkLinkedList_Batch(b *testing.B) {
 	b.StartTimer()
 	defer b.StopTimer()
-	l := CreateLinkedList[int]()
+	l := NewLinkedList[int]()
 	for i := 0; i < 100000; i++ {
 		l.RPush(i)
 	}
@@ -79,7 +79,7 @@ func BenchmarkLinkedList_Batch(b *testing.B) {
 func BenchmarkLinkedList_Batch1(b *testing.B) {
 	b.StartTimer()
 	defer b.StopTimer()
-	l := CreateLinkedList[testStruct]()
+	l := NewLinkedList[testStruct]()
 	for i := 0; i < 100000; i++ {
 		l.RPush(testStruct{
 			name: strconv.Itoa(i),

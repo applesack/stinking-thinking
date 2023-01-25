@@ -6,7 +6,7 @@ import (
 )
 
 func TestVector_Add(t *testing.T) {
-	v := CreateVector[int](1)
+	v := NewVector[int](1)
 	for i := 0; i < 10; i++ {
 		v.Add(i)
 	}
@@ -20,7 +20,7 @@ func BenchmarkVector_Add(b *testing.B) {
 	defer b.StopTimer()
 
 	for i := 0; i < 1000; i++ {
-		ls := CreateVector[int](2048)
+		ls := NewVector[int](2048)
 		for i := 0; i < 10000; i++ {
 			ls.Add(i)
 		}

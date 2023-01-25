@@ -11,7 +11,7 @@ type LinkedList[T any] struct {
 	tail *DLinkedNode[T]
 }
 
-func CreateLinkedList[T any]() *LinkedList[T] {
+func NewLinkedList[T any]() *LinkedList[T] {
 	h, t := &DLinkedNode[T]{}, &DLinkedNode[T]{}
 	BindDLinkedNode(h, t)
 	return &LinkedList[T]{size: 0, head: h, tail: t}
@@ -22,14 +22,14 @@ func (t *LinkedList[T]) Size() int {
 }
 
 func (t *LinkedList[T]) RPush(value T) {
-	prev, tail, node := t.tail.Prev, t.tail, CreateDLinkedNode(value)
+	prev, tail, node := t.tail.Prev, t.tail, NewDLinkedNode(value)
 	BindDLinkedNode(prev, node)
 	BindDLinkedNode(node, tail)
 	t.size++
 }
 
 func (t *LinkedList[T]) LPush(value T) {
-	head, next, node := t.head, t.head.Next, CreateDLinkedNode(value)
+	head, next, node := t.head, t.head.Next, NewDLinkedNode(value)
 	BindDLinkedNode(head, node)
 	BindDLinkedNode(node, next)
 	t.size++

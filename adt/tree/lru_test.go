@@ -6,7 +6,7 @@ import (
 )
 
 func TestLRU_PUT_GET(t *testing.T) {
-	cache := CreateLRU[int, int](3)
+	cache := NewLRU[int, int](3)
 	cache.Put(1, 1)
 	cache.Put(2, 2)
 	cache.Put(3, 3)

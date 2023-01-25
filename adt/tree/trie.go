@@ -15,7 +15,7 @@ type trieNode[T any] struct {
 	value *T
 }
 
-func CreateTrieTree[T any]() *TrieTree[T] {
+func NewTrieTree[T any]() *TrieTree[T] {
 	return &TrieTree[T]{}
 }
 

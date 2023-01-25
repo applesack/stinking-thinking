@@ -10,7 +10,7 @@ type LRU[K comparable, V any] struct {
 	head, tail *DLinkedNode[*Entry[K, V]]
 }
 
-func CreateLRU[K comparable, V any](maxSize int) *LRU[K, V] {
+func NewLRU[K comparable, V any](maxSize int) *LRU[K, V] {
 	h, t := &DLinkedNode[*Entry[K, V]]{}, &DLinkedNode[*Entry[K, V]]{}
 	BindDLinkedNode(h, t)
 	return &LRU[K, V]{
@@ -43,8 +43,8 @@ func (t *LRU[K, V]) Put(key K, value V) (*V, bool) {
 		return &previousValue, true
 	}
 
-	entry := CreateEntry(key, value)
-	node := CreateDLinkedNode(entry)
+	entry := NewEntry(key, value)
+	node := NewDLinkedNode(entry)
 	if t.Size() >= t.maxSize {
 		t.removeTail()
 	}
