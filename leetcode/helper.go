@@ -7,17 +7,12 @@ import (
 )
 
 func BuildListNode(nums ...int) *ListNode {
-	if len(nums) == 0 {
-		return nil
-	}
-
-	var point, head *ListNode
-	head = &ListNode{}
-	point = head
+	head := new(ListNode)
+	point := head
 
 	for _, num := range nums {
-		node := &ListNode{Val: num}
-		point.Next = node
+		point.Next = new(ListNode)
+		point.Next.Val = num
 		point = point.Next
 	}
 
